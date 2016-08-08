@@ -1,0 +1,9 @@
+{% if cinema_list %}
+<ul>
+    {% for cinema in cinema_list %}
+    <li><a href="cinema/{{cinema.id}}">{{ cinema.name }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No cinemas entered.</p>
+{% endif %}

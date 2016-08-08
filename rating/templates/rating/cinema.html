@@ -1,0 +1,9 @@
+{% if hall_list %}
+<ul>
+    {% for hall in hall_list %}
+    <li><a href="hall/{{hall.id}}">{{ hall.name }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No halls entered.</p>
+{% endif %}
