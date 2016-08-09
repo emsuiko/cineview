@@ -27,7 +27,26 @@ class Row(models.Model):
 class Seat(models.Model):
     row = models.ForeignKey(Row, on_delete=models.CASCADE)
     number = models.CharField(max_length=10)
-    rating = models.IntegerField(default=0)
+
+    def calculated_2d_rating(self):
+        values = self.rating_set.values_list('view_2d', flat=True)
+        if len(values) == 0:
+            return None
+        else:
+            return sum(values) / len(values)
+
+    def calculated_3d_rating(self):
+        values = self.rating_set.values_list('view_3d', flat=True)
+        if len(values) == 0:
+            return None
+        else:
+            return sum(values) / len(values)
 
     def __str__(self):
         return "%s" % self.number
+
+
+class Rating(models.Model):
+    seat = models.ForeignKey(Seat, on_delete=models.CASCADE)
+    view_2d = models.IntegerField(default=0)
+    view_3d = models.IntegerField(default=0)
