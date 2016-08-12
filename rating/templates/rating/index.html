@@ -3,14 +3,14 @@
 
 {% block content %}
 
-    {% if cinema_list %}
+    {% if location_list %}
     <ul>
-        {% for cinema in cinema_list %}
-        <li><a href="cinema/{{cinema.id}}">{{ cinema.name }}</li>
+        {% for location in location_list %}
+        <li><a href="location/{{location.id}}">{{ location.city }}</li>
         {% endfor %}
     </ul>
     {% else %}
-    <p>No cinemas entered.</p>
+    <p>No locations entered.</p>
     {% endif %}
 
 {% endblock content %}
