@@ -1,14 +1,21 @@
-{% if row_list %}
-<ul>
-    {% for row in row_list %}
-    <li>Reihe {{row.number}}</li>
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+    {% if row_list %}
     <ul>
-        {% for seat in row.seat_set.all %}
-        <li><a href="seat/{{seat.id}}">Sitz {{seat}}</a></li>
+        {% for row in row_list %}
+        <li>Reihe {{row.number}}</li>
+        <ul>
+            {% for seat in row.seat_set.all %}
+            <li><a href="seat/{{seat.id}}">Sitz {{seat}}</a></li>
+            {% endfor %}
+        </ul>
         {% endfor %}
     </ul>
-    {% endfor %}
-</ul>
-{% else %}
-<p>No rows entered.</p>
-{% endif %}
+    {% else %}
+    <p>No rows entered.</p>
+    {% endif %}
+
+{% endblock content %}

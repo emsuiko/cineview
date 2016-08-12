@@ -1,8 +1,15 @@
-{% if seat %}
-<h1>Sitz {{seat.number}}</h1>
-<p>2D: {{ seat.calculated_2d_rating }}</p>
-<p>3D: {{ seat.calculated_3d_rating }}</p>
+{% extends "base.html" %}
+{% load staticfiles %}
 
-{% else %}
-<p>No seat found.</p>
-{% endif %}
+{% block content %}
+
+    {% if seat %}
+    <h1>Sitz {{seat.number}}</h1>
+    <p>2D: {{ seat.calculated_2d_rating }}</p>
+    <p>3D: {{ seat.calculated_3d_rating }}</p>
+
+    {% else %}
+    <p>No seat found.</p>
+    {% endif %}
+
+{% endblock content %}
