@@ -12,13 +12,17 @@
 <body>
 
 <div class="container">
-    {% block content %}{% endblock content %}
-    {% block footer %}{% endblock footer %}
+    <div class="jumbotron">
+        {% block content %}{% endblock content %}
+        {% block footer %}{% endblock footer %}
+    </div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 {% block js %}{% endblock js %}
 
+
+<a href="http://de.freepik.com/vektoren-kostenlos/cinema-hintergrund_781647.htm">Entworfen durch Freepik</a>
 </body>
 </html>

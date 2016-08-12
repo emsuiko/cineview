@@ -1,0 +1,10 @@
+body {
+    background-image: url(../img/right-curtain.png), url(../img/left-curtain.png);
+    background-position: right top, left top;
+    background-repeat: no-repeat;
+}
+
+.jumbotron {
+    margin: 0 200px;
+    background-color: transparent;
+}
