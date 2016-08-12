@@ -50,3 +50,4 @@ class Rating(models.Model):
     seat = models.ForeignKey(Seat, on_delete=models.CASCADE)
     view_2d = models.IntegerField(default=0)
     view_3d = models.IntegerField(default=0)
+    comment = models.TextField(max_length=200, null=True)
