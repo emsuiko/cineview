@@ -40,5 +40,10 @@ def hall(request, location_id, cinema_id, hall_id):
 
 def seat(request, location_id, cinema_id, hall_id, seat_id):
     seat_details = Seat.objects.get(id=seat_id)
-    return render(request, 'rating/seat.html', {'seat': seat_details, })
+
+    data = {
+        'seat': seat_details,
+    }
+
+    return render(request, 'rating/seat.html', data)
 

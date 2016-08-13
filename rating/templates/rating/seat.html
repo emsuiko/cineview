@@ -5,12 +5,22 @@
 
 {% block content %}
 
-    {% if seat %}
-    <p>2D: {{ seat.calculated_2d_rating }}</p>
-    <p>3D: {{ seat.calculated_3d_rating }}</p>
+    {% if seat.ratings %}
+        <h2>Zusammenfassung</h2>
+        <p>2D: {{ seat.calculated_2d_rating }}</p>
+        <p>3D: {{ seat.calculated_3d_rating }}</p>
+
+        <h2>Bewertungen</h2>
+        {% if seat.ratings %}
+            {% for rating in seat.ratings %}
+                <p>2D: {{ rating.view_2d }}</p>
+                <p>3D: {{ rating.view_3d }}</p>
+                <p>Kommentar: {{ rating.comment }}</p>
+            {% endfor %}
+        {% endif %}
 
     {% else %}
-    <p>No seat found.</p>
+        <p>No ratings yet.</p>
     {% endif %}
 
 {% endblock content %}

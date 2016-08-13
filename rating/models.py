@@ -50,6 +50,9 @@ class Seat(models.Model):
         else:
             return sum(values) / len(values)
 
+    def ratings(self):
+        return self.rating_set.all()
+
     def __str__(self):
         return "%s" % self.number
 
