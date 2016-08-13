@@ -10,19 +10,32 @@ def index(request):
 
 def city(request, location_id):
     cinema_list = Cinema.objects.filter(location_id=location_id)
-    return render(request, 'rating/city.html', {'cinema_list': cinema_list, })
+    data = {
+        'cinema_list': cinema_list,
+        'city': Location.objects.get(id=location_id).city}
+    return render(request, 'rating/city.html', data)
 
 
 def cinema(request, location_id, cinema_id):
     cinema = Cinema.objects.get(id=cinema_id)
     hall_list = Hall.objects.filter(cinema=cinema)
 
-    return render(request, 'rating/cinema.html', {'hall_list': hall_list, })
+    data = {
+        'hall_list': hall_list,
+        'cinema': Cinema.objects.get(id=cinema_id).name
+    }
+    return render(request, 'rating/cinema.html', data)
 
 
 def hall(request, location_id, cinema_id, hall_id):
     row_list = Row.objects.filter(hall__id=hall_id)
-    return render(request, 'rating/hall.html', {'row_list': row_list, })
+
+    data = {
+        'row_list': row_list,
+        'hall': Hall.objects.get(id=hall_id).name
+    }
+
+    return render(request, 'rating/hall.html', data)
 
 
 def seat(request, location_id, cinema_id, hall_id, seat_id):

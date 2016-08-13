@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+{% block header %}Sitz {{seat.number}}{% endblock header %}
+
 {% block content %}
 
     {% if seat %}
-    <h1>Sitz {{seat.number}}</h1>
     <p>2D: {{ seat.calculated_2d_rating }}</p>
     <p>3D: {{ seat.calculated_3d_rating }}</p>
 

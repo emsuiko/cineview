@@ -1,19 +1,21 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+{% block header %}{{ hall }}{% endblock header %}
+
 {% block content %}
 
     {% if row_list %}
-    <ul>
         {% for row in row_list %}
-        <li>Reihe {{row.number}}</li>
-        <ul>
-            {% for seat in row.seat_set.all %}
-            <li><a href="seat/{{seat.id}}">Sitz {{seat}}</a></li>
+            <p>
+                Reihe {{row.number}}
+                {% for seat in row.seat_set.all %}
+                <a href="seat/{{seat.id}}" title="Sitz {{ seat.number }}">
+                    <img class="seat grayscale" src="{% static 'img/seat.png' %}"/>
+                </a>
             {% endfor %}
-        </ul>
+            </p>
         {% endfor %}
-    </ul>
     {% else %}
     <p>No rows entered.</p>
     {% endif %}

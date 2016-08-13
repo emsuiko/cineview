@@ -1,10 +1,65 @@
-body {
-    background-image: url(../img/right-curtain.png), url(../img/left-curtain.png);
-    background-position: right top, left top;
-    background-repeat: no-repeat;
+@media screen and (min-width: 770px) {
+    body {
+        background-image: url(../img/right-curtain.png), url(../img/left-curtain.png);
+        background-position: right top, left top;
+        background-repeat: no-repeat;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    html {
+        min-height: 100%;
+    }
+    body {
+        background: url(../img/seats.png) no-repeat center bottom;
+    }
 }
 
 .jumbotron {
     margin: 0 200px;
     background-color: transparent;
+}
+
+ul {
+    list-style: none;
+}
+
+ul#locations > li:before {
+    font-family: 'FontAwesome';
+    content: '\f041';
+    margin:0 5px 0 -15px;
+    color: #000;
+}
+
+ul#cinemas > li:before {
+    font-family: 'FontAwesome';
+    content: '\f015';
+    margin:0 5px 0 -15px;
+    color: #000;
+}
+
+ul#halls > li:before {
+    font-family: 'FontAwesome';
+    content: '\f008';
+    margin:0 5px 0 -15px;
+    color: #000;
+}
+
+img.seat {
+    height: 25px;
+}
+
+.grayscale {
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+}
+
+.hue-rotate {
+    -webkit-filter: hue-rotate(45deg);
+    filter: hue-rotate(45deg);
+}
+
+a, a:hover {
+    color: black;
+    text-decoration: none;
 }

@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+{% block header %}{{ cinema }}{% endblock header %}
+
 {% block content %}
 
     {% if hall_list %}
-    <ul>
+    <ul id="halls">
         {% for hall in hall_list %}
         <li><a href="hall/{{hall.id}}">{{ hall.name }}</a></li>
         {% endfor %}

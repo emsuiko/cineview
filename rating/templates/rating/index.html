@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+{% block header %}Städte{% endblock header %}
+
 {% block content %}
 
     {% if location_list %}
-    <ul>
+    <ul id="locations">
         {% for location in location_list %}
         <li><a href="location/{{location.id}}">{{ location.city }}</li>
         {% endfor %}

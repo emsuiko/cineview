@@ -8,11 +8,13 @@
 
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
 </head>
 <body>
 
 <div class="container">
     <div class="jumbotron">
+        <h1>{% block header %}{% endblock header %}</h1>
         {% block content %}{% endblock content %}
         {% block footer %}{% endblock footer %}
     </div>
@@ -22,7 +24,10 @@
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 {% block js %}{% endblock js %}
 
-
+<!--
 <a href="http://de.freepik.com/vektoren-kostenlos/cinema-hintergrund_781647.htm">Entworfen durch Freepik</a>
+<a href='http://de.freepik.com/vektoren-kostenlos/rote-sessel-hintergrund-vorlage_847472.htm'>Designed by Freepik</a>
+<a href='http://de.freepik.com/vektoren-kostenlos/cinema-pack_762413.htm'>Designed by Freepik</a>
+-->
 </body>
 </html>
