@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load bootstrap3 %}
 
 {% block header %}Sitz {{seat.number}}{% endblock header %}
 
@@ -22,5 +23,7 @@
     {% else %}
         <p>No ratings yet.</p>
     {% endif %}
+
+    <a href="rate">Rate this seat!</a>
 
 {% endblock content %}

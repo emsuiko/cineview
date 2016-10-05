@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from .models import *
+from .forms import RatingForm
 
 
 def index(request):
@@ -41,9 +42,29 @@ def hall(request, location_id, cinema_id, hall_id):
 def seat(request, location_id, cinema_id, hall_id, seat_id):
     seat_details = Seat.objects.get(id=seat_id)
 
+    return render(request, 'rating/seat.html', {'seat': seat_details})
+
+
+def rating(request):
+    return render(request, 'index')
+
+
+def rate(request, location_id, cinema_id, hall_id, seat_id):
+    seat_details = Seat.objects.get(id=seat_id)
+
+    if request.method == 'POST':
+        form = RatingForm(request.POST)
+        if form.is_valid():
+            rating = form.save(commit=False)
+            rating.seat = seat_details
+            rating.save()
+        return render(request, 'rating/seat.html', {'seat': seat_details})
+
+    form = RatingForm()
+
     data = {
         'seat': seat_details,
+        'form': form,
     }
 
-    return render(request, 'rating/seat.html', data)
-
+    return render(request, 'rating/rate.html', data)

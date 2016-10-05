@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+{% block header %}Sitz {{seat.number}}{% endblock header %}
+
+{% block content %}
+    <form method="post" action="">
+        {% csrf_token %}
+        {% bootstrap_form_errors form %}
+        {% bootstrap_form form %}
+        {% bootstrap_button "Save" button_type="submit" button_class="btn-primary" %}
+    </form>
+
+{% endblock content %}
