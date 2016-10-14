@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap3',
+    'mptt',
+    'nested_admin',
 ]
 
 MIDDLEWARE = [
@@ -78,7 +80,7 @@ WSGI_APPLICATION = 'cineview.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': u'cineview',
+        'NAME': u'cview',
         'HOST': u'127.0.0.1',
         'USER': u'root',
         'PASSWORD': u'',

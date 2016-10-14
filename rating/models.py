@@ -1,39 +1,58 @@
 from django.db import models
+from mptt.models import MPTTModel, TreeForeignKey
 
 
-class Location(models.Model):
+class Location(MPTTModel):
     city = models.CharField(max_length=200)
+    parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True)
 
     def __str__(self):
         return "%s" % self.city
 
 
-class Cinema(models.Model):
-    location = models.ForeignKey(Location, on_delete=models.CASCADE)
+class Cinema(MPTTModel):
+    parent = TreeForeignKey(Location, on_delete=models.CASCADE, related_name='cinema', verbose_name='Location')
     name = models.CharField(max_length=200)
 
     def __str__(self):
         return "%s" % self.name
 
 
-class Hall(models.Model):
-    cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE)
+class Hall(MPTTModel):
+    parent = TreeForeignKey(Cinema, on_delete=models.CASCADE, related_name='halls', verbose_name='Cinema')
     name = models.CharField(max_length=200)
 
     def __str__(self):
         return "%s" % self.name
 
 
-class Row(models.Model):
-    hall = models.ForeignKey(Hall, on_delete=models.CASCADE)
+class Row(MPTTModel):
+    parent = TreeForeignKey(Hall, on_delete=models.CASCADE, related_name='rows', verbose_name='Hall')
     number = models.CharField(max_length=10)
+    seat_count = models.IntegerField(default=0)
+
+    def save(self, *args, **kwargs):
+        super(Row, self).save(*args, **kwargs)
+
+        old_seat_count = len(self.seats.all())
+        diff = self.seat_count - old_seat_count
+
+        start = 1
+        if diff > 0:
+            start = old_seat_count+1
+
+        for i in range(start, self.seat_count+1):
+                seat = Seat()
+                seat.parent = self
+                seat.number = i
+                seat.save()
 
     def __str__(self):
         return "%s" % self.number
 
 
-class Seat(models.Model):
-    row = models.ForeignKey(Row, on_delete=models.CASCADE)
+class Seat(MPTTModel):
+    parent = TreeForeignKey(Row, on_delete=models.CASCADE, related_name='seats', verbose_name='Row')
     number = models.CharField(max_length=10)
 
     def calculated_2d_rating(self):

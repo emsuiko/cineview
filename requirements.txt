@@ -1,4 +1,8 @@
 Django==1.10
 django-bootstrap3==7.0.1
+django-mptt==0.8.6
 django-mysql-pymysql==0.1
+django-nested-admin==3.0.10
 PyMySQL==0.7.6
+python-monkey-business==1.0.0
+six==1.10.0

@@ -23,6 +23,7 @@ def cinema(request, location_id, cinema_id):
 
     data = {
         'hall_list': hall_list,
+        'city': Location.objects.get(id=location_id).city,
         'cinema': Cinema.objects.get(id=cinema_id).name
     }
     return render(request, 'rating/cinema.html', data)
