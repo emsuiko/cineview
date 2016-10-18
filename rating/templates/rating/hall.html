@@ -9,9 +9,19 @@
         {% for row in row_list %}
             <p>
                 Reihe {{row.number}}
-                {% for seat in row.seat_set.all %}
+                {% for seat in row.seats.all %}
                 <a href="seat/{{seat.id}}" title="Sitz {{ seat.number }}">
-                    <img class="seat grayscale" src="{% static 'img/seat.png' %}"/>
+                    {% if seat.calculated_2d_rating <= 1 %}
+                        <img class="seat" src="{% static 'img/seat-good.png' %}"/>
+                    {% elif seat.calculated_2d_rating <= 2 %}
+                        <img class="seat" src="{% static 'img/seat-fine.png' %}"/>
+                    {% elif seat.calculated_2d_rating <= 3 %}
+                        <img class="seat" src="{% static 'img/seat-medium.png' %}"/>
+                    {% elif seat.calculated_2d_rating <= 4 %}
+                        <img class="seat" src="{% static 'img/seat.png' %}"/>
+                    {% else %}
+                        <img class="seat grayscale" src="{% static 'img/seat.png' %}"/>
+                    {% endif %}
                 </a>
             {% endfor %}
             </p>
