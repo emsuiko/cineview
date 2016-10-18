@@ -4,6 +4,9 @@
         background-position: right top, left top;
         background-repeat: no-repeat;
     }
+    .jumbotron {
+        height: 750px;
+    }
 }
 
 @media screen and (max-width: 770px) {
@@ -13,14 +16,21 @@
     body {
         background: url(../img/seats.png) no-repeat center bottom;
     }
+    .jumbotron {
+        height: 550px;
+    }
 }
 
 .container {
     margin: 10px;
+    height: 100% ;
+    overflow: hidden;
 }
 
 .jumbotron {
+    overflow-y: scroll;
     margin: 0 200px;
+    width: 100%;
     background-color: transparent;
 }
 
