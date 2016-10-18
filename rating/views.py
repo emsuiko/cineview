@@ -10,7 +10,7 @@ def index(request):
 
 
 def city(request, location_id):
-    cinema_list = Cinema.objects.filter(location_id=location_id)
+    cinema_list = Cinema.objects.filter(parent_id=location_id)
     data = {
         'cinema_list': cinema_list,
         'city': Location.objects.get(id=location_id).city}
@@ -19,7 +19,7 @@ def city(request, location_id):
 
 def cinema(request, location_id, cinema_id):
     cinema = Cinema.objects.get(id=cinema_id)
-    hall_list = Hall.objects.filter(cinema=cinema)
+    hall_list = Hall.objects.filter(parent=cinema)
 
     data = {
         'hall_list': hall_list,
@@ -30,7 +30,7 @@ def cinema(request, location_id, cinema_id):
 
 
 def hall(request, location_id, cinema_id, hall_id):
-    row_list = Row.objects.filter(hall__id=hall_id)
+    row_list = Row.objects.filter(parent_id=hall_id)
 
     data = {
         'row_list': row_list,
