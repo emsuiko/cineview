@@ -11,9 +11,14 @@ def index(request):
 
 def city(request, location_id):
     cinema_list = Cinema.objects.filter(parent_id=location_id)
+
+    location = Location.objects.get(id=location_id)
+
     data = {
         'cinema_list': cinema_list,
-        'city': Location.objects.get(id=location_id).city}
+        'city': location.city,
+        'breadcrumbs': location.breadcrumbs()
+    }
     return render(request, 'rating/city.html', data)
 
 
@@ -24,7 +29,8 @@ def cinema(request, location_id, cinema_id):
     data = {
         'hall_list': hall_list,
         'city': Location.objects.get(id=location_id).city,
-        'cinema': Cinema.objects.get(id=cinema_id).name
+        'cinema': Cinema.objects.get(id=cinema_id).name,
+        'breadcrumbs': cinema.breadcrumbs()
     }
     return render(request, 'rating/cinema.html', data)
 
@@ -32,9 +38,12 @@ def cinema(request, location_id, cinema_id):
 def hall(request, location_id, cinema_id, hall_id):
     row_list = Row.objects.filter(parent_id=hall_id)
 
+    hall = Hall.objects.get(id=hall_id)
+
     data = {
         'row_list': row_list,
-        'hall': Hall.objects.get(id=hall_id).name
+        'hall': hall,
+        'breadcrumbs': hall.breadcrumbs()
     }
 
     return render(request, 'rating/hall.html', data)
@@ -43,7 +52,13 @@ def hall(request, location_id, cinema_id, hall_id):
 def seat(request, location_id, cinema_id, hall_id, seat_id):
     seat_details = Seat.objects.get(id=seat_id)
 
-    return render(request, 'rating/seat.html', {'seat': seat_details})
+    data = {
+        'seat': seat_details,
+        'breadcrumbs': seat_details.breadcrumbs()
+    }
+
+
+    return render(request, 'rating/seat.html', data)
 
 
 def rating(request):

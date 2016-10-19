@@ -6,6 +6,12 @@ class Location(MPTTModel):
     city = models.CharField(max_length=200)
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True)
 
+    def get_absolute_url(self):
+        return '/rating/location/%i' % self.pk
+
+    def breadcrumbs(self):
+        return []
+
     def __str__(self):
         return "%s" % self.city
 
@@ -14,6 +20,12 @@ class Cinema(MPTTModel):
     parent = TreeForeignKey(Location, on_delete=models.CASCADE, related_name='cinema', verbose_name='Location')
     name = models.CharField(max_length=200)
 
+    def get_absolute_url(self):
+        return self.parent.get_absolute_url() + '/cinema/%i' % self.pk
+
+    def breadcrumbs(self):
+        return [self.parent]
+
     def __str__(self):
         return "%s" % self.name
 
@@ -21,6 +33,12 @@ class Cinema(MPTTModel):
 class Hall(MPTTModel):
     parent = TreeForeignKey(Cinema, on_delete=models.CASCADE, related_name='halls', verbose_name='Cinema')
     name = models.CharField(max_length=200)
+
+    def get_absolute_url(self):
+        return self.parent.get_absolute_url() + '/hall/%i' % self.pk
+
+    def breadcrumbs(self):
+        return [self.parent.parent, self.parent]
 
     def __str__(self):
         return "%s" % self.name
@@ -71,6 +89,12 @@ class Seat(MPTTModel):
 
     def ratings(self):
         return self.rating_set.all()
+
+    def get_absolute_url(self):
+        return self.parent.parent.get_absolute_url() + '/seat/%i' % self.pk
+
+    def breadcrumbs(self):
+        return [self.parent.parent.parent.parent, self.parent.parent.parent, self.parent.parent]
 
     def __str__(self):
         return "%s" % self.number
