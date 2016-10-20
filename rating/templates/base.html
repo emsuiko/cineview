@@ -15,10 +15,14 @@
 <div class="container">
     <div class="jumbotron">
         <h1>{% block header %}{% endblock header %}</h1>
-        <a href="/rating">Cineview</a> <i class="fa fa-angle-right" aria-hidden="true"></i>
-        {% for crumb in breadcrumbs %}
-            <a href="{{ crumb.get_absolute_url }}">{{ crumb }}</a> <i class="fa fa-angle-right" aria-hidden="true"></i>
-        {% endfor %}
+
+        <div class="breadcrumbs">
+            <a href="/rating">Cineview</a> <i class="fa fa-angle-right" aria-hidden="true"></i>
+            {% for crumb in breadcrumbs %}
+                <a href="{{ crumb.get_absolute_url }}">{{ crumb }}</a> <i class="fa fa-angle-right" aria-hidden="true"></i>
+            {% endfor %}
+        </div>
+
         {% block content %}{% endblock content %}
         {% block footer %}{% endblock footer %}
     </div>
@@ -26,6 +30,9 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/application.js' %}"></script>
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 {% block js %}{% endblock js %}
 
 <!--

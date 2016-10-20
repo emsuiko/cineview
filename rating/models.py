@@ -35,7 +35,7 @@ class Hall(MPTTModel):
     name = models.CharField(max_length=200)
 
     def get_absolute_url(self):
-        return self.parent.get_absolute_url() + '/hall/%i' % self.pk
+        return self.parent.get_absolute_url() + '/hall/%i/view/2' % self.pk
 
     def breadcrumbs(self):
         return [self.parent.parent, self.parent]

@@ -5,6 +5,8 @@
 
 {% block content %}
 
+    <i class="fa fa-map-marker" aria-hidden="true"></i> {{ city }}
+
     {% if cinema_list %}
     <ul id="cinemas">
         {% for cinema in cinema_list %}

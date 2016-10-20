@@ -1,14 +1,16 @@
-{% extends "base.html" %}
+{% extends "rating/city.html" %}
 {% load staticfiles %}
 
 {% block header %}{{ cinema }}{% endblock header %}
 
 {% block content %}
 
+    <i class="fa fa-home" aria-hidden="true"></i> {{ cinema }}
+
     {% if hall_list %}
     <ul id="halls">
         {% for hall in hall_list %}
-        <li><a href="hall/{{hall.id}}">{{ hall.name }}</a></li>
+        <li><a href="hall/{{hall.id}}/view/2">{{ hall.name }}</a></li>
         {% endfor %}
     </ul>
     {% else %}

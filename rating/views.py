@@ -35,7 +35,7 @@ def cinema(request, location_id, cinema_id):
     return render(request, 'rating/cinema.html', data)
 
 
-def hall(request, location_id, cinema_id, hall_id):
+def hall(request, location_id, cinema_id, hall_id, view):
     row_list = Row.objects.filter(parent_id=hall_id)
 
     hall = Hall.objects.get(id=hall_id)
@@ -43,13 +43,29 @@ def hall(request, location_id, cinema_id, hall_id):
     data = {
         'row_list': row_list,
         'hall': hall,
+        'view': view,
         'breadcrumbs': hall.breadcrumbs()
     }
 
     return render(request, 'rating/hall.html', data)
 
 
-def seat(request, location_id, cinema_id, hall_id, seat_id):
+def rows(request, location_id, cinema_id, hall_id, view):
+    row_list = Row.objects.filter(parent_id=hall_id)
+
+    hall = Hall.objects.get(id=hall_id)
+
+    data = {
+        'row_list': row_list,
+        'hall': hall,
+        'view': view,
+        'breadcrumbs': hall.breadcrumbs()
+    }
+
+    return render(request, 'rating/rows.html', data)
+
+
+def seat(request, location_id, cinema_id, hall_id, view, seat_id):
     seat_details = Seat.objects.get(id=seat_id)
 
     data = {
@@ -65,7 +81,7 @@ def rating(request):
     return render(request, 'index')
 
 
-def rate(request, location_id, cinema_id, hall_id, seat_id):
+def rate(request, location_id, cinema_id, hall_id, view, seat_id):
     seat_details = Seat.objects.get(id=seat_id)
 
     if request.method == 'POST':
@@ -81,6 +97,7 @@ def rate(request, location_id, cinema_id, hall_id, seat_id):
     data = {
         'seat': seat_details,
         'form': form,
+        'breadcrumbs': seat_details.breadcrumbs()
     }
 
     return render(request, 'rating/rate.html', data)
