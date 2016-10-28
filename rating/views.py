@@ -96,8 +96,6 @@ def seat(request, location_id, cinema_id, hall_id, view, seat_id):
         'ratings_3d': ratings_3d
     }
 
-    print(data)
-
     return render(request, 'rating/seat.html', data)
 
 
