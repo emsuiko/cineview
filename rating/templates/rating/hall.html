@@ -7,9 +7,9 @@
 
     <i class="fa fa-film" aria-hidden="true"></i> {{ hall.name }} <i class="fa fa-angle-right" aria-hidden="true"></i>
     {% if view == '2' %}
-        <input id="view-switch" type="checkbox" checked data-toggle="toggle" data-size="mini" data-onstyle="primary" data-offstyle="info">
+        <input id="view-switch" type="checkbox" checked data-toggle="toggle" data-size="mini" data-onstyle="danger" >
     {% else %}
-        <input id="view-switch" type="checkbox"  data-toggle="toggle" data-size="mini" data-onstyle="primary" data-offstyle="info">
+        <input id="view-switch" type="checkbox"  data-toggle="toggle" data-size="mini" data-onstyle="danger" >
     {% endif %}
 
     {% include 'rating/rows.html' with row_list=row_list view=view %}
