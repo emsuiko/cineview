@@ -5,6 +5,12 @@ from .forms import *
 
 
 def welcome(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            rating = form.save()
+            rating.save()
+
     form = ContactForm()
     return render(request, 'rating/welcome.html', {'form': form})
 
