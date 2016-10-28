@@ -19,7 +19,7 @@ from django.contrib import admin
 from rating.views import welcome
 
 urlpatterns = [
-    url(r'', welcome),
     url(r'^rating/', include('rating.urls')),
+    url(r'^welcome', welcome),
     url(r'^admin/', admin.site.urls),
 ]
