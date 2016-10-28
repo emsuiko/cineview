@@ -74,18 +74,63 @@ class Seat(MPTTModel):
     number = models.CharField(max_length=10)
 
     def calculated_2d_rating(self):
-        values = self.rating_set.values_list('view_2d', flat=True)
+        v = self.rating_set.values_list('view_2d', flat=True)
+        values = [x for x in v if x != 0]
         if len(values) == 0:
             return None
         else:
             return sum(values) / len(values)
 
     def calculated_3d_rating(self):
-        values = self.rating_set.values_list('view_3d', flat=True)
+        v = self.rating_set.values_list('view_3d', flat=True)
+        values = [x for x in v if x != 0]
         if len(values) == 0:
             return None
         else:
             return sum(values) / len(values)
+
+    def ratings_2d(self):
+        v = self.rating_set.values_list('view_2d', flat=True)
+        values = [x for x in v if x != 0]
+
+        ratings = {}
+        for i in range(1, 5):
+            ratings[i] = values.count(i)
+
+        return sorted(ratings.items())
+
+    def ratings_2d_detail(self, rate):
+        v = self.rating_set.values_list('view_2d', flat=True)
+        values = [x for x in v if x != 0]
+        return values.count(rate)
+
+    def rating_2d_comments(self, rate):
+        comments = self.rating_set.filter(view_3d=rate)
+        c = comments.values_list('comment', flat=True)
+        return list(filter(None, c))
+
+    def ratings_3d_detail(self, rate):
+        v = self.rating_set.values_list('view_3d', flat=True)
+        values = [x for x in v if x != 0]
+        return values.count(rate)
+
+    def rating_3d_comments(self, rate):
+        comments = self.rating_set.filter(view_3d=rate)
+        c = comments.values_list('comment', flat=True)
+        return list(filter(None, c))
+
+    def ratings_3d(self):
+        v = self.rating_set.values_list('view_3d', flat=True)
+        values = [x for x in v if x != 0]
+
+        ratings = {}
+        for i in range(1, 5):
+            ratings[i] = values.count(i)
+
+        return sorted(ratings.items())
+
+    def ratings_2d_one(self):
+        return self.ratings_2d(1)
 
     def ratings(self):
         return self.rating_set.all()
@@ -102,6 +147,6 @@ class Seat(MPTTModel):
 
 class Rating(models.Model):
     seat = models.ForeignKey(Seat, on_delete=models.CASCADE)
-    view_2d = models.IntegerField(default=0)
-    view_3d = models.IntegerField(default=0)
-    comment = models.TextField(max_length=200, null=True)
+    view_2d = models.IntegerField(default=0, null=True, blank=True)
+    view_3d = models.IntegerField(default=0, null=True, blank=True)
+    comment = models.TextField(max_length=200, null=True, blank=True)

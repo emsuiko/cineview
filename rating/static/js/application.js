@@ -21,3 +21,14 @@ $(function() {
         })
     })
 });
+
+$( function() {
+    $( "#accordion_2d" ).accordion({
+        collapsible: true,
+        heightStyle: "content"
+    });
+    $( "#accordion_3d" ).accordion({
+        collapsible: true,
+        heightStyle: "content"
+    });
+} );

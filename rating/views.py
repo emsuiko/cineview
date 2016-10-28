@@ -36,7 +36,7 @@ def cinema(request, location_id, cinema_id):
 
 
 def hall(request, location_id, cinema_id, hall_id, view):
-    row_list = Row.objects.filter(parent_id=hall_id)
+    row_list = Row.objects.filter(parent_id=hall_id).order_by('number')
 
     hall = Hall.objects.get(id=hall_id)
 
@@ -51,7 +51,7 @@ def hall(request, location_id, cinema_id, hall_id, view):
 
 
 def rows(request, location_id, cinema_id, hall_id, view):
-    row_list = Row.objects.filter(parent_id=hall_id)
+    row_list = Row.objects.filter(parent_id=hall_id).order_by('number')
 
     hall = Hall.objects.get(id=hall_id)
 
@@ -68,11 +68,30 @@ def rows(request, location_id, cinema_id, hall_id, view):
 def seat(request, location_id, cinema_id, hall_id, view, seat_id):
     seat_details = Seat.objects.get(id=seat_id)
 
+    ratings_2d, ratings_3d = [], []
+    for i in range(1, 5):
+        single_rating = {
+            'title': i,
+            'total': seat_details.ratings_2d_detail(i),
+            'comments': seat_details.rating_2d_comments(i),
+        }
+        ratings_2d.append(single_rating)
+
+        single_rating2 = {
+            'title': i,
+            'total': seat_details.ratings_3d_detail(i),
+            'comments': seat_details.rating_3d_comments(i),
+        }
+        ratings_3d.append(single_rating2)
+
     data = {
         'seat': seat_details,
-        'breadcrumbs': seat_details.breadcrumbs()
+        'breadcrumbs': seat_details.breadcrumbs(),
+        'ratings_2d': ratings_2d,
+        'ratings_3d': ratings_3d
     }
 
+    print(data)
 
     return render(request, 'rating/seat.html', data)
 

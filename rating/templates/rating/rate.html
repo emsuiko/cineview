@@ -5,11 +5,27 @@
 {% block header %}Sitz {{seat.number}}{% endblock header %}
 
 {% block content %}
+
+    Reihe {{ seat.parent.number }}, Sitz {{ seat.number }}
+
     <form method="post" action="">
         {% csrf_token %}
         {% bootstrap_form_errors form %}
-        {% bootstrap_form form %}
-        {% bootstrap_button "Save" button_type="submit" button_class="btn-primary" %}
+{#        {% bootstrap_form form %}#}
+        <div class="row">
+            <div class="col-md-6">
+                {% bootstrap_field form.view_2d %}
+            </div>
+            <div class="col-md-6">
+                {% bootstrap_field form.view_3d %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                {% bootstrap_field form.comment %}
+            </div>
+        </div>
+        {% bootstrap_button "Bewertung abgeben" button_type="submit" button_class="btn-primary" %}
     </form>
 
 {% endblock content %}
