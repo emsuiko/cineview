@@ -1,11 +1,15 @@
 @media screen and (min-width: 770px) {
     body {
-        background-image: url(../img/right-curtain.png), url(../img/left-curtain.png);
+        background-image: url(../img/right-curtains.png), url(../img/left-curtains.png);
         background-position: right top, left top;
-        background-repeat: no-repeat;
+        background-repeat: repeat-y;
     }
     .jumbotron {
-        height: 750px;
+        margin: 0 200px;
+    }
+    .fix{
+        bottom:0px;
+        display: none;
     }
 }
 
@@ -13,11 +17,11 @@
     html {
         min-height: 100%;
     }
-    body {
-        background: url(../img/seats.png) no-repeat center bottom;
-    }
     .jumbotron {
-        height: 550px;
+        margin: 0 30px;
+    }
+    .fix{
+        bottom:0px;
     }
 }
 
@@ -29,7 +33,6 @@
 
 .jumbotron {
     overflow-y: scroll;
-    margin: 0 200px;
     width: 100%;
     background-color: transparent;
 }
