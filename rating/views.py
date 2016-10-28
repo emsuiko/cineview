@@ -15,6 +15,11 @@ def welcome(request):
     return render(request, 'rating/welcome.html', {'form': form})
 
 
+def imprint(request):
+    return render(request, 'rating/impressum.html')
+
+
+
 def index(request):
     location_list = Location.objects.all()
     return render(request, 'rating/index.html', {'location_list': location_list, })

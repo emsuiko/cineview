@@ -25,10 +25,12 @@
         </div>
 
         {% block content %}{% endblock content %}
-        {% block footer %}{% endblock footer %}
     </div>
 </div>
 <img class="fix" src="{% static 'img/seats.png' %}"/>
+<div class="footer text-center">
+    <a href="/impressum">Impressum</a>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
@@ -38,10 +40,6 @@
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 {% block js %}{% endblock js %}
 
-<!--
-<a href="http://de.freepik.com/vektoren-kostenlos/cinema-hintergrund_781647.htm">Entworfen durch Freepik</a>
-<a href='http://de.freepik.com/vektoren-kostenlos/rote-sessel-hintergrund-vorlage_847472.htm'>Designed by Freepik</a>
-<a href='http://de.freepik.com/vektoren-kostenlos/cinema-pack_762413.htm'>Designed by Freepik</a>
--->
+
 </body>
 </html>

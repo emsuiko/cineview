@@ -16,10 +16,11 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from rating.views import welcome
+from rating.views import welcome, imprint
 
 urlpatterns = [
     url(r'^rating/', include('rating.urls')),
-    url(r'^welcome', welcome),
+    url(r'^welcome/', welcome),
+    url(r'^impressum/', imprint),
     url(r'^admin/', admin.site.urls),
 ]

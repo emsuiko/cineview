@@ -19,10 +19,28 @@
     }
     .jumbotron {
         margin: 0 30px;
+        min-height: 500px;
     }
     .fix{
         bottom:0px;
     }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0 0 20px;
+}
+
+div.footer {
+    background-color: rgba(255,255,255,0.5);
+    bottom: 0px;
+    width: 100%;
+    position: absolute;
+    height: 20px;
 }
 
 .container {
