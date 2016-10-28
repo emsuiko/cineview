@@ -18,7 +18,7 @@
         <h1>{% block header %}{% endblock header %}</h1>
 
         <div class="breadcrumbs">
-            <a href="/rating">Cineview</a> <i class="fa fa-angle-right" aria-hidden="true"></i>
+            <a href="/welcome">Cineview</a> <i class="fa fa-angle-right" aria-hidden="true"></i>
             {% for crumb in breadcrumbs %}
                 <a href="{{ crumb.get_absolute_url }}">{{ crumb }}</a> <i class="fa fa-angle-right" aria-hidden="true"></i>
             {% endfor %}
