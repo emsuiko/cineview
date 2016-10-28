@@ -1,7 +1,12 @@
 from django.shortcuts import render
 
 from .models import *
-from .forms import RatingForm
+from .forms import *
+
+
+def welcome(request):
+    form = ContactForm()
+    return render(request, 'rating/welcome.html', {'form': form})
 
 
 def index(request):

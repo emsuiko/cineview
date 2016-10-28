@@ -150,3 +150,11 @@ class Rating(models.Model):
     view_2d = models.IntegerField(default=0, null=True, blank=True)
     view_3d = models.IntegerField(default=0, null=True, blank=True)
     comment = models.TextField(max_length=200, null=True, blank=True)
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=200, null=True, blank=True)
+    mail = models.CharField(max_length=200, null=True, blank=True)
+    city = models.CharField(max_length=200, verbose_name='Stadt')
+    cinema = models.CharField(max_length=200, verbose_name='Kino')
+    comment = models.TextField(max_length=500, null=True, blank=True, verbose_name='Nachricht')
