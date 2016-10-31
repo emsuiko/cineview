@@ -27,7 +27,7 @@ class Cinema(MPTTModel):
         return [self.parent]
 
     def __str__(self):
-        return "%s" % self.name
+        return self.parent.__str__() + " / Kino %s" % self.name
 
 
 class Hall(MPTTModel):
@@ -41,7 +41,7 @@ class Hall(MPTTModel):
         return [self.parent.parent, self.parent]
 
     def __str__(self):
-        return "%s" % self.name
+        return self.parent.__str__() + ", Saal %s" % self.name
 
 
 class Row(MPTTModel):
@@ -66,7 +66,7 @@ class Row(MPTTModel):
                 seat.save()
 
     def __str__(self):
-        return "%s" % self.number
+        return self.parent.__str__() + " - Reihe %s" % self.number
 
 
 class Seat(MPTTModel):
@@ -142,7 +142,7 @@ class Seat(MPTTModel):
         return [self.parent.parent.parent.parent, self.parent.parent.parent, self.parent.parent]
 
     def __str__(self):
-        return "%s" % self.number
+        return self.parent.__str__() + ", Sitz %s" % self.number
 
 
 class Rating(models.Model):
