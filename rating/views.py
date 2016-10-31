@@ -6,18 +6,28 @@ from .forms import *
 
 def welcome(request):
     if request.method == 'POST':
-        form = ContactForm(request.POST)
+        form = CinemaContactForm(request.POST)
         if form.is_valid():
             rating = form.save()
             rating.save()
 
-    form = ContactForm()
+    form = CinemaContactForm()
     return render(request, 'rating/welcome.html', {'form': form})
 
 
 def imprint(request):
     return render(request, 'rating/impressum.html')
 
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            contact = form.save()
+            contact.save()
+
+    form = ContactForm()
+    return render(request, 'rating/contact.html', {'form': form})
 
 
 def index(request):

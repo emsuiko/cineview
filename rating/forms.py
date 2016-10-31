@@ -19,10 +19,21 @@ class RatingForm(forms.ModelForm):
         fields = ['view_2d', 'view_3d', 'comment', ]
 
 
-class ContactForm(forms.ModelForm):
+class CinemaContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = ['name', 'mail', 'city', 'cinema', 'comment', ]
         widgets = {
             'comment': forms.Textarea(attrs={'rows': 3}),
         }
+
+
+class ContactForm(forms.ModelForm):
+    mail = forms.CharField(required=True)
+    city = forms.CharField(required=False, label='Stadt')
+    cinema = forms.CharField(required=False, label='Kino')
+    comment = forms.CharField(widget=forms.Textarea(attrs={'rows': 3}), required=True, label='Nachricht')
+
+    class Meta:
+        model = Contact
+        fields = ['name', 'mail', 'city', 'cinema', 'comment', ]

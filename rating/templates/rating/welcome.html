@@ -15,11 +15,15 @@
             <p>Du suchst den besten Platz für deinen nächsten Kinobesuch?</p>
             <p>Schau nach, wie andere Besucher das Kino und die Plätze bewertet haben und sichere dir die beste Sicht!</p>
             <div class="rate-button">
-                <a class="button-link" href="rating/">Zur Städeübersicht</a>
+                <a class="button-link" href="/rating/">Zur Städeübersicht</a>
             </div>
         </div>
         <div class="col-md-6">
             <h2>Dein Lieblingskino ist nicht dabei?</h2>
+            <p>
+                Kein Problem! Schreibe uns einfach welches Kino fehlt und wir ergänzen es in unserer Liste.<br />
+                Wenn du deine Mail-Adresse mit angibst, informieren wir dich, sobald du auch für dein Kino Bewertungen abgeben kannst.
+            </p>
             <form method="post" action="">
                 {% csrf_token %}
                 {% bootstrap_form_errors form %}

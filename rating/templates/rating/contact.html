@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+
+{% block header %}Cineview{% endblock header %}
+
+{% block content %}
+
+    <i class="fa fa-star-o" aria-hidden="true"></i>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Du möchtest uns was sagen?</h2>
+            <p>
+                Du hast Feedback für uns oder möchtest nur mal ein paar Worte loswerden?<br />
+                Schreibe uns eine Nachricht über das Kontaktformular oder einfach eine Mail an abc@def.dh!
+            </p>
+            <form method="post" action="">
+                {% csrf_token %}
+                {% bootstrap_form_errors form %}
+                {% bootstrap_form form %}
+                {% bootstrap_button "Absenden" button_type="submit" button_class="btn-primary" %}
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}
