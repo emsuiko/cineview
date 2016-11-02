@@ -14,6 +14,18 @@ class RatingForm(forms.ModelForm):
     view_2d = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(), required=False, initial=0, label='Sicht im 2D-Film')
     view_3d = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(), required=False, initial=0, label='Sicht im 3D-Film')
 
+    def is_valid(self):
+        valid = super(RatingForm, self).is_valid()
+        if not valid:
+            return valid
+
+        if self.cleaned_data['view_2d'] == '0' and self.cleaned_data['view_3d'] == '0':
+            self._errors['no_rating'] = 'Gibt bitte mindestens eine Bewertung ein!'
+            return False
+
+        return True
+
+
     class Meta:
         model = Rating
         fields = ['view_2d', 'view_3d', 'comment', ]

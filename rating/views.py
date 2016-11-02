@@ -127,15 +127,15 @@ def rating(request):
 def rate(request, location_id, cinema_id, hall_id, view, seat_id):
     seat_details = Seat.objects.get(id=seat_id)
 
+    form = RatingForm()
+
     if request.method == 'POST':
         form = RatingForm(request.POST)
         if form.is_valid():
             rating = form.save(commit=False)
             rating.seat = seat_details
             rating.save()
-        return seat(request, location_id, cinema_id, hall_id, view, seat_id)
-
-    form = RatingForm()
+            return seat(request, location_id, cinema_id, hall_id, view, seat_id)
 
     data = {
         'seat': seat_details,

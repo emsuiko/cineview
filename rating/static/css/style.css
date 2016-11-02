@@ -188,3 +188,12 @@ div.rate-button {
 .required label:after {
     content:" *";
 }
+
+#rate-form .has-success .control-label,
+#rate-form .has-success .radio {
+    color: #333 !important;
+}
+
+#rate-form .has-success .form-control {
+    border-color: #ccc !important;
+}
