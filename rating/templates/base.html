@@ -20,7 +20,7 @@
         <div class="breadcrumbs">
             <a href="/welcome">Cineview</a> <i class="fa fa-angle-right" aria-hidden="true"></i>
             {% for crumb in breadcrumbs %}
-                <a href="{{ crumb.get_absolute_url }}">{{ crumb }}</a> <i class="fa fa-angle-right" aria-hidden="true"></i>
+                <a href="{{ crumb.get_absolute_url }}">{{ crumb.name }}</a> <i class="fa fa-angle-right" aria-hidden="true"></i>
             {% endfor %}
         </div>
 

@@ -6,6 +6,10 @@ class Location(MPTTModel):
     city = models.CharField(max_length=200)
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True)
 
+    @property
+    def name(self):
+        return self.city
+
     def get_absolute_url(self):
         return '/rating/location/%i' % self.pk
 
