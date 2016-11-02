@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .models import *
 from .forms import *
@@ -133,7 +133,7 @@ def rate(request, location_id, cinema_id, hall_id, view, seat_id):
             rating = form.save(commit=False)
             rating.seat = seat_details
             rating.save()
-        return render(request, 'rating/seat.html', {'seat': seat_details})
+        return seat(request, location_id, cinema_id, hall_id, view, seat_id)
 
     form = RatingForm()
 
