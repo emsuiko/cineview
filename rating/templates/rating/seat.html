@@ -25,36 +25,14 @@
                 <p>{{ seat.calculated_2d_rating }} (Durchschnittsbewertung)</p>
 
                 <div id="accordion_2d">
-                {% for rating in ratings_2d %}
-                    <h3>{{ rating.title }} ({{ rating.total }})</h3>
-                    <div>
-                        {% if rating.comments %}
-                            {% for comment in rating.comments %}
-                                <p>{{ comment }}</p>
-                            {% endfor %}
-                        {% else %}
-                            <p>Noch keine Kommentare vorhanden.</p>
-                        {% endif %}
-                    </div>
-                {% endfor %}
+                    {% include 'rating/ratings.html' with ratings=ratings_2d %}
                 </div>
             </div>
             <div class="col-md-6">
                 <h4>3D</h4>
                 <p>{{ seat.calculated_3d_rating }} (Durchschnittsbewertung)</p>
                 <div id="accordion_3d">
-                    {% for rating in ratings_3d %}
-                        <h3>{{ rating.title }} ({{ rating.total }})</h3>
-                        <div>
-                            {% if rating.comments %}
-                                {% for comment in rating.comments %}
-                                    <p>{{ comment }}</p>
-                                {% endfor %}
-                            {% else %}
-                                <p>Noch keine Kommentare vorhanden.</p>
-                            {% endif %}
-                        </div>
-                    {% endfor %}
+                    {% include 'rating/ratings.html' with ratings=ratings_3d %}
                 </div>
             </div>
         </div>

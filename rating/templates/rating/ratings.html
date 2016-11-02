@@ -1,0 +1,14 @@
+{% load staticfiles %}
+
+{% for rating in ratings %}
+    <h3>{{ rating.title }} ({{ rating.total }})</h3>
+    <div>
+        {% if rating.comments %}
+            {% for comment in rating.comments %}
+                <p>{{ comment }}</p>
+            {% endfor %}
+        {% else %}
+            <p>Noch keine Kommentare vorhanden.</p>
+        {% endif %}
+    </div>
+{% endfor %}
