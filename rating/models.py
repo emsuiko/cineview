@@ -81,17 +81,19 @@ class Seat(MPTTModel):
         v = self.rating_set.values_list('view_2d', flat=True)
         values = [x for x in v if x != 0]
         if len(values) == 0:
-            return None
+            return '-'
         else:
-            return sum(values) / len(values)
+            a = sum(values) / len(values)
+            return round(a, 2)
 
     def calculated_3d_rating(self):
         v = self.rating_set.values_list('view_3d', flat=True)
         values = [x for x in v if x != 0]
         if len(values) == 0:
-            return None
+            return '-'
         else:
-            return sum(values) / len(values)
+            a = sum(values) / len(values)
+            return round(a, 2)
 
     def ratings_2d(self):
         v = self.rating_set.values_list('view_2d', flat=True)
