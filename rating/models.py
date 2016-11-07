@@ -111,7 +111,7 @@ class Seat(MPTTModel):
         return values.count(rate)
 
     def rating_2d_comments(self, rate):
-        comments = self.rating_set.filter(view_3d=rate)
+        comments = self.rating_set.filter(view_2d=rate)
         c = comments.values_list('comment', flat=True)
         return list(filter(None, c))
 
